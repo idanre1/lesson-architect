@@ -1,0 +1,86 @@
+{
+  "description": "lesson-architect evaluation cases. 'lesson' cases are real sample lessons produced by following the skill; 'fixture' cases are deliberately defective inputs the structural checker must reject. Structural results never establish teaching quality; the qualitative verdicts live in each example's review.md.",
+  "qualitative_checks": [
+    "Every learning outcome is taught and assessed",
+    "Exercises require no untaught concepts",
+    "Terminology and notation are introduced before use",
+    "Transitions preserve the learning thread",
+    "Worked examples explain reasoning",
+    "Followable without filling missing conceptual steps",
+    "Claims, calculations, and code checked"
+  ],
+  "lessons": [
+    {
+      "id": "math-beginner-markdown",
+      "prompt": "Write me a beginner lesson in Markdown on solving two-step linear equations like 3x + 5 = 20. I'm an adult who remembers arithmetic but never really understood algebra.",
+      "dir": "examples/math-two-step-equations",
+      "lesson": "lesson.md",
+      "kind": "general",
+      "execute": false
+    },
+    {
+      "id": "technical-notebook",
+      "prompt": "Create a Jupyter notebook lesson explaining why 0.1 + 0.2 != 0.3 in Python, i.e. how floating-point numbers actually work and how to compare them safely. I'm comfortable writing basic Python but know nothing about how numbers are stored in a computer.",
+      "dir": "examples/floating-point-notebook",
+      "lesson": "lesson.ipynb",
+      "kind": "general",
+      "execute": true
+    },
+    {
+      "id": "research-paper",
+      "prompt": "Teach me the ResNet paper — 'Deep Residual Learning for Image Recognition' (arXiv:1512.03385) — as a Markdown lesson. I know what a neural-network layer, a training loss, and gradient descent are, but I've never read a research paper and I don't know convolutional networks in detail.",
+      "dir": "examples/paper-resnet",
+      "lesson": "lesson.md",
+      "kind": "paper",
+      "execute": false
+    },
+    {
+      "id": "piano-beginner-markdown",
+      "prompt": "Make me a beginner piano practice lesson in Markdown. I've never played. I have a 61-key keyboard at home and I want to be able to play my first simple melody with my right hand, steadily, by the end.",
+      "dir": "examples/piano-first-melody",
+      "lesson": "lesson.md",
+      "kind": "general",
+      "execute": false
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "encyclopedic-summary",
+      "path": "evals/fixtures/bad-encyclopedic.md",
+      "kind": "general",
+      "must_fail": ["Orientation marker", "Learning outcomes listed", "Has a worked example", "Has exercises", "Has a synthesis"],
+      "must_warn": ["Sub-headings not mechanically repeated"]
+    },
+    {
+      "id": "misaligned-practice",
+      "path": "evals/fixtures/bad-misaligned.md",
+      "kind": "general",
+      "must_fail": ["Every outcome is assessed", "Guided practice precedes independent", "Worked example precedes first exercise", "Every exercise has a solution", "Hints/solutions separated"]
+    },
+    {
+      "id": "paper-without-claim-separation",
+      "path": "evals/fixtures/bad-paper-unseparated.md",
+      "kind": "paper",
+      "must_fail": ["Paper lesson marks paper claim", "Paper lesson marks interpretation", "Paper lesson marks limitations", "Paper lesson lists sources"]
+    },
+    {
+      "id": "unfilled-template",
+      "path": "evals/fixtures/bad-unfilled-template.md",
+      "kind": "general",
+      "must_fail": ["No unfilled template placeholders"]
+    },
+    {
+      "id": "markdown-renamed-as-notebook",
+      "path": "evals/fixtures/bad-renamed-markdown.ipynb",
+      "kind": "general",
+      "must_fail": ["Notebook is valid JSON"]
+    },
+    {
+      "id": "notebook-that-crashes",
+      "path": "evals/fixtures/bad-notebook-crashes.ipynb",
+      "kind": "general",
+      "execute": true,
+      "must_fail": ["Executed in a clean kernel"]
+    }
+  ]
+}
