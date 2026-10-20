@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../../../../datadrive/tmp/claude/uploads"
+		},
+		{
+			"path": "../skills/video_analyzer_skill"
+		},
+		{
+			"path": "../../../../datadrive/scratch/video"
 		}
 	]
 }
